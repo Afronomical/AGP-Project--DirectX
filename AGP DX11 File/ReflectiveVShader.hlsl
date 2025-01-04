@@ -79,6 +79,7 @@ VOut main(VIn input)
     float3 eyer = -normalize(wvpos);
 
     output.reflectionUVW = 2.0 * dot(eyer, wvnormal) * wvnormal - eyer;
+    output.reflectionUVW = mul(float4(output.reflectionUVW, 0),WV);
 
     return output;
 
