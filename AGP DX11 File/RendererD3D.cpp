@@ -3,6 +3,7 @@
 
 HRESULT RendererD3D::Initialize(HWND hWnd)
 {
+	InitD3D(hWnd);
 	return S_OK;
 }
 HRESULT RendererD3D::InitD3D(HWND hWnd)

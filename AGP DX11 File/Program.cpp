@@ -1,6 +1,16 @@
 #include "Program.h"
 #include "Window.h"
 
+
+Program* Program::instance = nullptr;
+int Program::Run(HINSTANCE hInstance, int nCmdShow)
+{
+	
+	Initialize(hInstance, nCmdShow);
+
+	return 0;
+}
+
 void Program::Initialize(HINSTANCE hInstance, int nCmdShow)
 {
 
@@ -13,7 +23,7 @@ void Program::Initialize(HINSTANCE hInstance, int nCmdShow)
 	//Initialize Renderer
 	/*if (FAILED())
 	{
-
+		
 	}*/
 
 }

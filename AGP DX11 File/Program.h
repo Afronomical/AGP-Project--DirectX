@@ -24,14 +24,32 @@ using namespace DirectX;
 
 class Program
 {
+#pragma region Singleton Pattern
 
-	int Run();
+private:
+	static Program* instance;
+	Program() {};
+	Program(const Program&) = delete;
+	Program& operator=(const Program&) = delete;
+public:
+	static Program* GetInstance() {
+		if (!instance) {
+			instance = new Program();
+		}
+		return instance;
+	}
+
+#pragma endregion
+
+
+private:
+	
+	int Run(HINSTANCE hInstance, int nCmdShow);
 	HINSTANCE hInst = NULL;
 	HWND	  hWnd = NULL;
 
 
-private:
-
+public:
 
 	void Initialize(HINSTANCE hInstance, int nCmdShow);
 	HRESULT InitWindow(HINSTANCE instanceHandle, int nCmdShow);

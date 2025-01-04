@@ -8,27 +8,30 @@ private:
 
 	static Window* instance;
 
-	
-	 const wchar_t* winName;
+	Window() {};
+				
 
-	 HINSTANCE hInst;
-	 HWND hWnd;
-
-	 int width;
-	 int height;
-
-	
-
-	 Window() : hInst(NULL),	hWnd(NULL),
-				winName(L"AGP Renderer Window"),
-				width(800),		height(600) {};
-
-	 Window(const Window&) = delete;
-	 Window& operator=(const Window&) = delete;
+	Window(const Window&) = delete;
+	Window& operator=(const Window&) = delete;
 
 public:
+	static Window* GetInstance() {
+		if (!instance) {
+			instance = new Window();
+		}
+		return instance;
+	}
+private:
 
+	const wchar_t* winName = (L"AGP Renderer Window");
 
+	HINSTANCE hInst	= NULL;
+	HWND hWnd		= NULL;
+
+	int width		= 800;
+	int height		= 600;
+
+public:
 
 	HRESULT Initialize(HINSTANCE instanceHandle, WNDPROC wndProc, int nCmdShow, const wchar_t* name, int width, int height);
 
@@ -38,12 +41,7 @@ public:
 	int GetWidth();
 	int GetHeight();
 
-	static Window* GetInstance() {
-		if (!instance) {
-			instance = new Window();
-		}
-		return instance;
-	}
+	
 	
 };
 

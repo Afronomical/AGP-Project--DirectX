@@ -581,19 +581,22 @@
 //	if (pPSSkybox)		pPSSkybox->Release();
 //	delete				model;
 //	delete				modelSkybox;
-//	if (pAlphaBlendStateDisable) pAlphaBlendStateDisable->Release();
-//	if (pAlphaBlendStateEnable) pAlphaBlendStateEnable->Release();
 //	delete				pText;
 //	if (pTexture)		pTexture->Release();
 //	if (pSampler)		pSampler->Release();
-//	if (g_ZBuffer)		g_ZBuffer->Release();
 //	if (pIBuffer)		pIBuffer->Release();
 //	if (pCBuffer)		pCBuffer->Release();
 //	if (pVBuffer)		pVBuffer->Release();
-//	if (g_backbuffer)	g_backbuffer->Release();
-//	if (g_swapchain)	g_swapchain->Release();
+//
+//
 //	if (g_dev)			g_dev->Release();
 //	if (g_devcon)		g_devcon->Release();
+//	if (g_ZBuffer)		g_ZBuffer->Release();
+//	if (pAlphaBlendStateDisable) pAlphaBlendStateDisable->Release();
+//	if (pAlphaBlendStateEnable) pAlphaBlendStateEnable->Release();
+//	if (g_backbuffer)	g_backbuffer->Release();
+//	if (g_swapchain)	g_swapchain->Release();
+//
 //	if (pVS)			pVS->Release();
 //	if (pPS)			pPS->Release();
 //	if (pLayout)		pLayout->Release();
