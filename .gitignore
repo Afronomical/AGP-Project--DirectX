@@ -65,3 +65,15 @@ desktop.ini
 *.orig
 *.swp
 *~
+
+# Visual Studio-specific files
+.vs/
+*.VC.db*
+*.suo
+
+# Shader files
+*.cso
+
+# Log files
+*.log
+*.tlog
