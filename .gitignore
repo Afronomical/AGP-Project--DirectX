@@ -1,0 +1,67 @@
+# Compiled object files
+*.o
+*.obj
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.dll
+
+# Compiled Static libraries
+*.lib
+*.a
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Debug files
+*.pdb
+*.ilk
+
+# Visual Studio specific
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+.vscode/
+
+# CMake specific
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+build/
+
+# CodeBlocks specific
+*.layout
+*.depend
+*.layout
+*.cbp
+
+# CLion specific
+.idea/
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+
+# Log files
+*.log
+
+# MacOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.tmp
+*.old
+*.orig
+*.swp
+*~
