@@ -1,9 +1,13 @@
 #include "RendererD3D.h"
 #include "Window.h"
 
+
+RendererD3D* RendererD3D::instance = nullptr;
+
 HRESULT RendererD3D::Initialize(HWND hWnd)
 {
 	InitD3D(hWnd);
+	std::cout << "RendererD3D initialized" << std::endl;
 	return S_OK;
 }
 HRESULT RendererD3D::InitD3D(HWND hWnd)

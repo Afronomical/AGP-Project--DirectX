@@ -902,8 +902,10 @@
 //
 //	CreateDDSTextureFromFile(g_dev, g_devcon, L"SkyboxResources/skybox01.dds", NULL, &pSkyboxTexture);
 //	pText = new Text2D("font1.png", g_dev, g_devcon);
-//	model = new ObjFileModel{ (char*)"sphere.obj", g_dev, g_devcon };
+//	model = new ObjFileModel{ (char*)"ChainsawMED.obj", g_dev, g_devcon };
 //	modelSkybox = new ObjFileModel{ (char*)"cube.obj", g_dev, g_devcon };
+//
+//	//Object Vertices
 //	Vertex vertices[] =
 //	{
 //		//			position					colour							Texture UV							NORMAL	
@@ -918,6 +920,7 @@
 //		{XMFLOAT3{0.5f,  -0.5f, 0.5f	}, XMFLOAT4{0.0f, 0.0f, 0.0f, 1.0f} , XMFLOAT2{1.0f, 1.0f}	,	XMFLOAT3{0.5773f, -0.5773f, 0.5773f}	},  //Back BR
 //
 //	};
+//	//
 //
 //	unsigned int indices[] = { /*front*/ 0,1,2,2,3,0, /*back*/ 7, 6,5,5,4,7, /*left*/ 4,5,1,1,0,4
 //		/*right*/,3,2,6,6,7,3  /*top*/ ,1,5,6,6,2,1,/*bottom*/ 4,0,3,3,7,4 };

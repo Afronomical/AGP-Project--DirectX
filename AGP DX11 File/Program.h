@@ -52,7 +52,7 @@ private:
 public:
 
 	void Initialize(HINSTANCE hInstance, int nCmdShow);
-	HRESULT InitWindow(HINSTANCE instanceHandle, int nCmdShow);
+	
 	LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 
 

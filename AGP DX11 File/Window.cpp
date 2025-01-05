@@ -2,7 +2,7 @@
 #include <Mouse.h>
 #include <Keyboard.h>
 #include <d3d11.h>
-
+#include <iostream>
 
 using namespace DirectX;
 Window* Window::instance = nullptr;
@@ -47,7 +47,7 @@ HRESULT Window::Initialize(HINSTANCE instanceHandle, WNDPROC wndProc, int nCmdSh
 
 
 	ShowWindow(hWnd, nCmdShow);
-
+	std::cout << "Window initialized" << std::endl;
 	return S_OK;
 }
 
