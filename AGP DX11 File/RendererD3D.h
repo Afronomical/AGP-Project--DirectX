@@ -16,6 +16,7 @@
 #include "objfilemodel.h"
 
 
+
 //Renderer handles UI, World, GameObjects, Camera and Skybox
 
 using namespace DirectX;
@@ -26,7 +27,7 @@ class RendererD3D
 private:
 
 	static RendererD3D* instance;
-
+	FLOAT bgColor[4]{ 1.0f, 0.4f, 0.6f, 1.0f };
 
 	ID3D11Device*			dev = NULL;			//pointer to our direct3d device interface
 	ID3D11DeviceContext*	devCon = NULL; // pointer to our Direct 3d device context
@@ -46,7 +47,10 @@ private:
 public:
 
 	HRESULT Initialize(HWND hWnd);
-	void Render();
+	void RenderFrame();
+	void Clean();
+	ID3D11Device* GetDevice() { return dev; };
+	ID3D11DeviceContext* GetDeviceContext() { return devCon; };
 
 	static RendererD3D* GetInstance() {
 		if (!instance) {

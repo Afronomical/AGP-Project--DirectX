@@ -902,8 +902,8 @@
 //
 //	CreateDDSTextureFromFile(g_dev, g_devcon, L"SkyboxResources/skybox01.dds", NULL, &pSkyboxTexture);
 //	pText = new Text2D("font1.png", g_dev, g_devcon);
-//	model = new ObjFileModel{ (char*)"ChainsawMED.obj", g_dev, g_devcon };
-//	modelSkybox = new ObjFileModel{ (char*)"cube.obj", g_dev, g_devcon };
+//	model = new ObjFileModel{ (char*)"cube.obj", g_dev, g_devcon };
+//	modelSkybox = new ObjFileModel{ (char*)"Sphere.obj", g_dev, g_devcon };
 //
 //	//Object Vertices
 //	Vertex vertices[] =

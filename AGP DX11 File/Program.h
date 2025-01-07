@@ -44,16 +44,15 @@ public:
 
 private:
 	
-	int Run(HINSTANCE hInstance, int nCmdShow);
 	HINSTANCE hInst = NULL;
 	HWND	  hWnd = NULL;
 
 
 public:
 
+	int Run();
 	void Initialize(HINSTANCE hInstance, int nCmdShow);
-	
-	LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
+	void Clean();
 
 
 

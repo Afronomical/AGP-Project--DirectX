@@ -1,6 +1,6 @@
 #include "RendererD3D.h"
 #include "Window.h"
-
+#include "MaterialManager.h"
 
 RendererD3D* RendererD3D::instance = nullptr;
 
@@ -8,8 +8,28 @@ HRESULT RendererD3D::Initialize(HWND hWnd)
 {
 	InitD3D(hWnd);
 	std::cout << "RendererD3D initialized" << std::endl;
+	MaterialManager::GetInstance()->Init(dev, devCon);
 	return S_OK;
 }
+void RendererD3D::RenderFrame()
+{
+	devCon->ClearRenderTargetView(backBuffer, bgColor);
+	devCon->ClearDepthStencilView(zBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	//std::cout << "RenderFrame" << std::endl;
+	swapChain->Present(1, 0);
+}
+
+void RendererD3D::Clean()
+{
+	if (swapChain)			swapChain->Release();
+	if (backBuffer)			backBuffer->Release();
+	if (zBuffer)			zBuffer->Release();
+	if (pAlphaBlendStateDisable) pAlphaBlendStateDisable->Release();
+	if (pAlphaBlendStateEnable) pAlphaBlendStateEnable->Release();
+
+
+}
+
 HRESULT RendererD3D::InitD3D(HWND hWnd)
 {
 #pragma region Swap Chain Description
@@ -52,7 +72,7 @@ HRESULT RendererD3D::InitD3D(HWND hWnd)
 	// To be handled elsewhere
 
 
-	//// Backface culling
+	////// Backface culling
 	//D3D11_RASTERIZER_DESC rsDesc;
 	//ZeroMemory(&rsDesc, sizeof(D3D11_RASTERIZER_DESC));
 	//rsDesc.CullMode = D3D11_CULL_BACK;

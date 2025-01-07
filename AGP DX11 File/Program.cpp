@@ -4,10 +4,31 @@
 
 
 Program* Program::instance = nullptr;
-int Program::Run(HINSTANCE hInstance, int nCmdShow)
+int Program::Run()
 {
 	
-	Initialize(hInstance, nCmdShow);
+
+	MSG msg;
+	while (true)
+	{
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+
+			DispatchMessage(&msg);
+
+			if (msg.message == WM_QUIT)
+				break;
+		}
+		else
+		{
+			//HandleInput();
+			//Game Code here
+			//RenderFrame();
+			RendererD3D::GetInstance()->RenderFrame();
+
+		}
+	}
 
 	return 0;
 }
@@ -37,6 +58,15 @@ void Program::Initialize(HINSTANCE hInstance, int nCmdShow)
 	{
 		MessageBox(NULL, L"Unable to create swapchain and device.", L"Critical Error", MB_ICONERROR | MB_OK);
 	}
+	
+}
 
+
+
+
+void Program::Clean()
+{
+
+	RendererD3D::GetInstance()->Clean();
 }
 

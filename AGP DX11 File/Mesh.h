@@ -1,5 +1,6 @@
 #pragma once
 #include "objfilemodel.h"
+#include "Material.h"
 
 struct Vertex
 {
@@ -13,15 +14,14 @@ class Mesh
 
 
 private:
-	ObjFileModel* fileModel;
-	const wchar_t FileLocation;
 
 
 
 public:
 
-
-	void Draw();
-
+	ObjFileModel* fileModel;
+	Material* material;
+	
+	
 };
 
