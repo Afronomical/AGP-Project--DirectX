@@ -56,7 +56,7 @@ HRESULT MaterialManager::CreateMaterial(std::string materialName, LPCWSTR textur
 
 Material* MaterialManager::GetMaterial(const std::string& materialName)
 {
-	if (MaterialLibrary[materialName] != nullptr)
+	if (MaterialLibrary.find(materialName) != MaterialLibrary.end())
 	{
 		return MaterialLibrary[materialName];
 	}

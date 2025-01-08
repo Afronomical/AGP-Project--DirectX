@@ -17,12 +17,16 @@ public:
     ~MeshManager();
     void Init(ID3D11Device* dev, ID3D11DeviceContext* devCon);
 
-    HRESULT CreateMesh(std::string meshName, std::string materialName, LPCWSTR objFileName );
+    HRESULT CreateMesh(std::string meshName, std::string materialName, const char* objFileName );
     Mesh* GetMesh(const std::string& meshName);
 
     void CleanAllMeshes();
 
-    void LoadMeshes();
+    void LoadMeshes()
+    {
+        CreateMesh("Skybox", "Skybox", "cube.obj");
+        CreateMesh("Default", "Default", "Sphere.obj");
+    }
 
     
 #pragma region Singleton Pattern

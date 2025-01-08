@@ -98,6 +98,9 @@ HRESULT ShaderManager::CreateShader(std::string ShaderName, LPCWSTR vsFileName, 
 			return E_FAIL;
 		}
 		ShaderLibrary.insert({ ShaderName, newShader });
+		std::cout << "Vertex Shader Address: " << newShader->vertexShader << std::endl;
+		std::cout << "Pixel Shader Address: " << newShader->pixelShader << std::endl;
+		std::cout << "Input Layout Address: " << newShader->inputLayout << std::endl;
 		std::cout << "ShaderManager::CreateShaders: successfully created shader named: *" + ShaderName + "*" << endl;
 		return S_OK;
 	}

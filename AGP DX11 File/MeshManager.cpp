@@ -12,7 +12,7 @@ void MeshManager::Init(ID3D11Device* dev, ID3D11DeviceContext* devCon)
 	std::cout << "MeshManager initialized" << std::endl;
 }
 
-HRESULT MeshManager::CreateMesh(std::string meshName, std::string materialName, LPCWSTR objFileName)
+HRESULT MeshManager::CreateMesh(std::string meshName, std::string materialName, const char* objFileName)
 {
 	if (MeshLibrary.find(meshName) == MeshLibrary.end())
 	{
@@ -20,7 +20,14 @@ HRESULT MeshManager::CreateMesh(std::string meshName, std::string materialName, 
 		newMesh->material = MaterialManager::GetInstance()->GetMaterial(materialName);
 		newMesh->fileModel = new ObjFileModel{ (char*)objFileName, device, context };
 
+		if (newMesh->fileModel->vertices == NULL)
+		{
+			std::cerr << "MeshManager::CreateMesh Failed to create mesh. *" << meshName << "* mesh could not load ObjFileModel" << endl;
+			return E_FAIL;
+		}
+
 		MeshLibrary.insert({ meshName, newMesh });
+		std::cout << "MeshManager::CreateMesh successfully created Mesh named: *" + meshName + "*" << endl;
 		return S_OK;
 	}
 	else
@@ -30,12 +37,12 @@ HRESULT MeshManager::CreateMesh(std::string meshName, std::string materialName, 
 	}
 
 
-	return E_NOTIMPL;
+	
 }
 
 Mesh* MeshManager::GetMesh(const std::string& meshName)
 {
-	if (MeshLibrary[meshName] != nullptr)
+	if (MeshLibrary.find(meshName) != MeshLibrary.end())
 	{
 		return MeshLibrary[meshName];
 	}
@@ -56,9 +63,4 @@ void MeshManager::CleanAllMeshes()
 
 }
 
-void MeshManager::LoadMeshes()
-{
 
-
-
-}

@@ -1,6 +1,6 @@
 #include "RendererD3D.h"
 #include "Window.h"
-#include "MaterialManager.h"
+#include "MeshManager.h"
 
 RendererD3D* RendererD3D::instance = nullptr;
 
@@ -8,7 +8,9 @@ HRESULT RendererD3D::Initialize(HWND hWnd)
 {
 	InitD3D(hWnd);
 	std::cout << "RendererD3D initialized" << std::endl;
-	MaterialManager::GetInstance()->Init(dev, devCon);
+	MeshManager::GetInstance()->Init(dev, devCon);
+	Skybox::GetInstance()->Initialize(dev, devCon, "Skybox");
+	
 	return S_OK;
 }
 void RendererD3D::RenderFrame()
@@ -16,6 +18,10 @@ void RendererD3D::RenderFrame()
 	devCon->ClearRenderTargetView(backBuffer, bgColor);
 	devCon->ClearDepthStencilView(zBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	//std::cout << "RenderFrame" << std::endl;
+
+
+	Skybox::GetInstance()->DrawSkyBox(cam);
+
 	swapChain->Present(1, 0);
 }
 

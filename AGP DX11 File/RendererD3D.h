@@ -14,7 +14,9 @@
 //#include <WICTextureLoader.h>
 #include "text2D.h"
 #include "objfilemodel.h"
+#include "Skybox.h"
 
+#include "Camera.h"
 
 
 //Renderer handles UI, World, GameObjects, Camera and Skybox
@@ -41,11 +43,13 @@ private:
 	ID3D11BlendState*		pAlphaBlendStateDisable = NULL;
 
 
+
 	XMMATRIX world, view, projection;
 
 	HRESULT InitD3D(HWND hWnd);
 public:
 
+	Camera cam;
 	HRESULT Initialize(HWND hWnd);
 	void RenderFrame();
 	void Clean();
