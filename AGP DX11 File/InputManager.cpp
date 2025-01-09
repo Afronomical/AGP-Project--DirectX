@@ -1,6 +1,8 @@
-#define WM_USER 0x0400
-#include "InputManager.h"
+
 #include "Window.h"
+#include "InputManager.h"
+
+InputManager* InputManager::instance = nullptr;
 
 void InputManager::Init()
 {

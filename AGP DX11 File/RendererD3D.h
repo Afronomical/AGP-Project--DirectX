@@ -41,7 +41,7 @@ private:
 
 	ID3D11BlendState*		pAlphaBlendStateEnable = NULL;
 	ID3D11BlendState*		pAlphaBlendStateDisable = NULL;
-
+	ID3D11SamplerState* sampler = NULL;
 
 
 	XMMATRIX world, view, projection;
@@ -55,6 +55,7 @@ public:
 	void Clean();
 	ID3D11Device* GetDevice() { return dev; };
 	ID3D11DeviceContext* GetDeviceContext() { return devCon; };
+	ID3D11SamplerState* GetSampler() const { return sampler; }
 
 	static RendererD3D* GetInstance() {
 		if (!instance) {

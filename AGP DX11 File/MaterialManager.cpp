@@ -22,7 +22,6 @@ HRESULT MaterialManager::CreateMaterial(std::string materialName, LPCWSTR textur
 		if (isSkybox)
 		{
 			CreateDDSTextureFromFile(RendererD3D::GetInstance()->GetDevice(), RendererD3D::GetInstance()->GetDeviceContext(), textureFileLocation, NULL, &newMtl->texture);
-
 		}
 		else
 		{

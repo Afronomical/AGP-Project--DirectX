@@ -13,6 +13,7 @@
 //#include "objfilemodel.h"
 //#include <iostream>
 //#include <DDSTextureLoader.h>
+//#include "Camera.h"
 //
 //
 ////#pragma comment (lib, "d3d11.lib")
@@ -117,24 +118,24 @@
 //
 //	PointLight pointLights[MAX_POINT_LIGHTS];
 //};
-//struct Camera
-//{
-//	float x = 0, y = 0, z = 0;
-//	float pitch = XM_PIDIV2, yaw = 0;
-//
-//	XMMATRIX GetViewMatrix()
-//	{
-//		XMVECTOR eyePos{ x, y, z };
-//		XMVECTOR camUp{ 0, 1, 0 };
-//		XMVECTOR lookTo{ sin(yaw) * sin(pitch),
-//						cos(pitch) ,
-//						cos(yaw) * sin(pitch)
-//		};
-//		//world up
-//		XMMATRIX view = XMMatrixLookToLH(eyePos, lookTo, camUp);
-//		return view;
-//	}
-//};
+////struct Camera
+////{
+////	float x = 0, y = 0, z = 0;
+////	float pitch = XM_PIDIV2, yaw = 0;
+////
+////	XMMATRIX GetViewMatrix()
+////	{
+////		XMVECTOR eyePos{ x, y, z };
+////		XMVECTOR camUp{ 0, 1, 0 };
+////		XMVECTOR lookTo{ sin(yaw) * sin(pitch),
+////						cos(pitch) ,
+////						cos(yaw) * sin(pitch)
+////		};
+////		//world up
+////		XMMATRIX view = XMMatrixLookToLH(eyePos, lookTo, camUp);
+////		return view;
+////	}
+////};
 //Camera g_camera;
 //
 //Text2D* pText;
@@ -305,7 +306,7 @@
 //		PostQuitMessage(0);
 //	}
 //	if (kbState.W)
-//	{	
+//	{
 //		g_camera.x += speed * sin(g_camera.yaw) * sin(g_camera.pitch);
 //		g_camera.y += speed * cos(g_camera.pitch);
 //		g_camera.z += speed * cos(g_camera.yaw) * sin(g_camera.pitch);

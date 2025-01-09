@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "MeshManager.h"
 #include <iostream>
+#include "RendererD3D.h"
 
 
 Skybox* Skybox::instance = nullptr;
@@ -41,9 +42,10 @@ void Skybox::DrawSkyBox(Camera g_camera)
 
 	//Set Shader resources
 	devCon->VSSetConstantBuffers(0, 1, &pSkyboxCBuffer);
-	devCon->PSGetSamplers(0, 1, &pSampler);
+	pSampler = RendererD3D::GetInstance()->GetSampler();
+	
 	devCon->PSSetShaderResources(0, 1, &mesh->material->texture);
-
+	devCon->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	//model->Draw();
 	mesh->fileModel->Draw();
 	//Backface culling and enable depth write
@@ -59,6 +61,7 @@ void Skybox::DrawSkyBox(Camera g_camera)
 	devCon->PSSetShader(mesh->material->shader->pixelShader, 0, 0);
 	devCon->IASetInputLayout(mesh->material->shader->inputLayout);
 
+	devCon->PSSetShaderResources(1, 1, &mesh->material->texture);
 }
 
 void Skybox::Initialize(ID3D11Device* dev, ID3D11DeviceContext* devContext, std::string MeshName)

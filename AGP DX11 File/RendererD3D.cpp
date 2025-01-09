@@ -21,12 +21,14 @@ void RendererD3D::RenderFrame()
 
 
 	Skybox::GetInstance()->DrawSkyBox(cam);
+	devCon->PSSetSamplers(0, 1, &sampler);
+	
 	devCon->OMSetBlendState(pAlphaBlendStateEnable, 0, 0xffffffff);
 	
 
 	devCon->OMSetBlendState(pAlphaBlendStateDisable, 0, 0xffffffff);
 
-	swapChain->Present(1, 0);
+	swapChain->Present(0, 0);
 }
 
 void RendererD3D::Clean()
@@ -180,7 +182,7 @@ HRESULT RendererD3D::InitD3D(HWND hWnd)
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
-	//dev->CreateSamplerState(&samplerDesc, &pSampler);
+	dev->CreateSamplerState(&samplerDesc, &sampler);
 
 
 #pragma region Blend states
