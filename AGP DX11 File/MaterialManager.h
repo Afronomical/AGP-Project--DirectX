@@ -26,6 +26,8 @@ public:
     void LoadMaterials()
     {
         CreateMaterial("Skybox", L"SkyboxResources/skybox01.dds", "Skybox", true);
+        CreateMaterial("Default", L"Box.bmp", "Default", false);
+        //CreateMaterial("Reflective", L"Box.bmp", "Default", false);
     }
     
 

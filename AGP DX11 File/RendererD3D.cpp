@@ -21,6 +21,10 @@ void RendererD3D::RenderFrame()
 
 
 	Skybox::GetInstance()->DrawSkyBox(cam);
+	devCon->OMSetBlendState(pAlphaBlendStateEnable, 0, 0xffffffff);
+	
+
+	devCon->OMSetBlendState(pAlphaBlendStateDisable, 0, 0xffffffff);
 
 	swapChain->Present(1, 0);
 }
@@ -83,11 +87,13 @@ HRESULT RendererD3D::InitD3D(HWND hWnd)
 	//ZeroMemory(&rsDesc, sizeof(D3D11_RASTERIZER_DESC));
 	//rsDesc.CullMode = D3D11_CULL_BACK;
 	//rsDesc.FillMode = D3D11_FILL_SOLID;
-	//dev->CreateRasterizerState(&rsDesc, &pRasterSolid);
+	//ID3D11RasterizerState* rasterSolid = Skybox::GetInstance()->GetRasterSolid();
+	//dev->CreateRasterizerState(&rsDesc, &rasterSolid);
 
 	////Front Face culling
 	//rsDesc.CullMode = D3D11_CULL_FRONT;
-	//dev->CreateRasterizerState(&rsDesc, &pRasterSkybox);
+	//ID3D11RasterizerState* rasterSkybox = Skybox::GetInstance()->GetRasterSkybox();
+	//dev->CreateRasterizerState(&rsDesc, &rasterSkybox);
 
 
 

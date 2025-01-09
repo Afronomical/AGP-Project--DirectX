@@ -305,7 +305,7 @@
 //		PostQuitMessage(0);
 //	}
 //	if (kbState.W)
-//	{
+//	{	
 //		g_camera.x += speed * sin(g_camera.yaw) * sin(g_camera.pitch);
 //		g_camera.y += speed * cos(g_camera.pitch);
 //		g_camera.z += speed * cos(g_camera.yaw) * sin(g_camera.pitch);

@@ -31,7 +31,7 @@ void Skybox::DrawSkyBox(Camera g_camera)
 
 
 	//Constant buffer data
-	CBUFFERSkyBox cbuf;
+	CBUFFERSkybox cbuf;
 	XMMATRIX translation, projection, view;
 	translation = XMMatrixTranslation(g_camera.x, g_camera.y, g_camera.z);
 	projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(60), Window::GetInstance()->GetHeight() / (float)Window::GetInstance()->GetWidth(), 0.1f, 100);
@@ -49,6 +49,10 @@ void Skybox::DrawSkyBox(Camera g_camera)
 	//Backface culling and enable depth write
 	devCon->OMSetDepthStencilState(pDepthWriteSolid, 1);
 	devCon->RSSetState(pRasterSolid);
+
+	
+
+
 
 
 	devCon->VSSetShader(mesh->material->shader->vertexShader, 0, 0);
@@ -77,7 +81,6 @@ void Skybox::Initialize(ID3D11Device* dev, ID3D11DeviceContext* devContext, std:
 	dev->CreateRasterizerState(&rsDesc, &pRasterSkybox);
 
 
-
 	//Depth writing enabled
 	D3D11_DEPTH_STENCIL_DESC dsDesc = { 0 };
 	dsDesc.DepthEnable = true;
@@ -87,6 +90,22 @@ void Skybox::Initialize(ID3D11Device* dev, ID3D11DeviceContext* devContext, std:
 	// Depth writing disabled
 	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 	dev->CreateDepthStencilState(&dsDesc, &pDepthWriteSkybox);
+
+	D3D11_BUFFER_DESC cbd = { 0 };
+	cbd.Usage = D3D11_USAGE_DEFAULT;
+	cbd.ByteWidth = sizeof(CBUFFER0);
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	/*if (FAILED(dev->CreateBuffer(&cbd, NULL, &pCBuffer)))
+	{
+		OutputDebugString(L"Failed to create constant buffer");
+		return;
+	}*/
+	cbd.ByteWidth = sizeof(CBUFFERSkybox);
+	if (FAILED(dev->CreateBuffer(&cbd, NULL, &pSkyboxCBuffer)))
+	{
+		OutputDebugString(L"Failed to  create skybox constant buffer");
+		return;
+	}
 
 	std::cout << "Skybox::Initialize: Successfully initialized skybox" << endl;
 }

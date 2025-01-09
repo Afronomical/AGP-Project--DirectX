@@ -4,35 +4,7 @@
 #include "objfilemodel.h"
 #include "Camera.h"
 #include "Mesh.h"
-struct PointLight
-{
-	XMVECTOR position = { 0,0,0,1 };  // 16 bytes
-	XMVECTOR colour = { 1,1,1,1 };	//16 bytes
-
-	float strength = 10;		// 4 bytes
-	BOOL enabled = false;		// 4 bytes
-	float padding[2];			// 8 bytes
-
-	// Total = 48 bytes
-};
-struct CBUFFER0
-{
-	XMMATRIX WVP;
-	XMMATRIX WV;
-	XMVECTOR ambientLightCol;
-	XMVECTOR directionalLightDir;
-	XMVECTOR directionalLightCol;
-
-	XMVECTOR pointLightPos;
-	XMVECTOR pointLightCol;
-	float pointLightStrength;
-
-	PointLight pointLights[8];
-};
-struct CBUFFERSkyBox
-{
-	DirectX::XMMATRIX WVP;
-};
+#include "Buffers.h"
 class Skybox
 {
 private:
@@ -52,6 +24,17 @@ public:
 	void DrawSkyBox( Camera cam);
 
 	void Initialize(ID3D11Device* dev, ID3D11DeviceContext* devCon, std::string meshName);
+
+	ID3D11RasterizerState* GetRasterSolid()
+	{ 
+		 
+		return pRasterSolid;
+	};
+	ID3D11RasterizerState* GetRasterSkybox()
+	{
+
+		return pRasterSkybox;
+	};
 
 #pragma region Singleton Pattern
 
