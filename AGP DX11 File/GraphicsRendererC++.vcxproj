@@ -154,6 +154,7 @@
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="text2D.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -237,6 +238,7 @@
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="text2D.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="WICTextureLoader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
