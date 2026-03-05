@@ -1,13 +1,13 @@
 
 #define MAX_POINT_LIGHTS 8
-struct VIn
+struct VS_Input
 {
     float3 position : POSITION;
     float4 colour : COLOR;
     float2 uv : TEXCOORD;
     float3 norm : NORMAL;
 };
-struct VOut
+struct VS_Output
 {
     float4 position : SV_Position;
     float4 colour : COLOR;
@@ -25,7 +25,8 @@ struct PointLight
 
 cbuffer CBUFFER0
 {
-    matrix WVP; // 64 bytes    
+    matrix WVP; // 64 bytes  
+    matrix WV;  //only change
     float4 ambientLightCol;
     float4 directionalLightDir;
     float4 directionalLightCol;
@@ -37,9 +38,9 @@ cbuffer CBUFFER0
 
 };
 
-VOut main(VIn input)
+VS_Output main(VS_Input input)
 {
-    VOut output;
+    VS_Output output;
     //Position
     output.position = mul(WVP, float4(input.position, 1));
     //Texture coords

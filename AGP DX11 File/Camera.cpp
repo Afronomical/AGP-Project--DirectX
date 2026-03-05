@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Window.h"
 
 XMMATRIX Camera::GetViewMatrix()
 {
@@ -11,4 +12,10 @@ XMMATRIX Camera::GetViewMatrix()
 	//world up
 	XMMATRIX view = XMMatrixLookToLH(eyePos, lookTo, camUp);
 	return view;
+}
+
+XMMATRIX Camera::GetProjectionMatrix()
+{
+	XMMATRIX projection = XMMatrixPerspectiveFovLH(XMConvertToRadians(FOV), Window::GetInstance()->GetWidth() / (float)Window::GetInstance()->GetHeight(), nearPlane, farPlane);
+	return projection;
 }

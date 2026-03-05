@@ -16,13 +16,13 @@
 #include <DDSTextureLoader.h>
 class Graphics
 {
-    HRESULT Initialize();
-    void RenderFrame();
-    void Cleanup();
+    //HRESULT Initialize();
+    //void RenderFrame();
+    //void Cleanup();
 
-    // Getters for resource access
-    ID3D11Device* GetDevice();
-    ID3D11DeviceContext* GetContext();
+    //// Getters for resource access
+    //ID3D11Device* GetDevice();
+    //ID3D11DeviceContext* GetContext();
 
 };
 

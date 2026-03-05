@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <string>
+#include <iostream>
 class Window
 {
 private:
@@ -9,6 +10,7 @@ private:
 	static Window* instance;
 
 	Window() {};
+	Window(const wchar_t* windowName) : winName(windowName) {};
 				
 
 	Window(const Window&) = delete;
@@ -28,8 +30,8 @@ private:
 	HINSTANCE hInst	= NULL;
 	HWND hWnd		= NULL;
 
-	int width		= 800;
-	int height		= 600;
+	int width		= 1920;
+	int height		= 1080;
 
 public:
 
@@ -40,7 +42,32 @@ public:
 	HWND GetWindowHandle();
 	int GetWidth();
 	int GetHeight();
+	void Clean()
+	{
+		if (hWnd) 
+		{
+			DestroyWindow(hWnd);
+			hWnd = NULL;
+		}
+		if (hInst) 
+		{
+			UnregisterClass(winName, hInst);
+			hInst = NULL;
+		}
+		if (instance) 
+		{
+			delete instance;
+			instance = nullptr;
+		}
+		if (winName)
+		{
+			winName = nullptr;
+		}
+		std::cout << "Window cleaned up" << std::endl;
 
+		
+		
+	}
 	
 	
 };

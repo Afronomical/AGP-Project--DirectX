@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -136,6 +136,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="DeltaTime.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -148,17 +150,29 @@
     <ClCompile Include="MeshManager.cpp" />
     <ClCompile Include="objfilemodel.cpp" />
     <ClCompile Include="OldMain.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="RendererD3D.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneDemo.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SpaceScene.cpp" />
     <ClCompile Include="text2D.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="EmmisiveVShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="PixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
@@ -217,10 +231,19 @@
       <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DisableOptimizations>
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableDebuggingInformation>
     </FxCompile>
+    <FxCompile Include="WaveVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffers.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="DeltaTime.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="InputManager.h" />
@@ -231,12 +254,19 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshManager.h" />
     <ClInclude Include="objfilemodel.h" />
+    <ClInclude Include="Planet.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="Program.h" />
     <ClInclude Include="ReadData.h" />
     <ClInclude Include="RendererD3D.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneDemo.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SpaceScene.h" />
     <ClInclude Include="text2D.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WICTextureLoader.h" />
@@ -244,6 +274,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GraphicsRendererC++.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

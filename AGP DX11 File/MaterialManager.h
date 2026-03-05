@@ -5,6 +5,13 @@
 #include <map>
 
 #include "Material.h"
+
+enum MaterialTypes
+{
+    mat_GameObject,
+    mat_Skybox,
+    mat_Wave,
+};
 class MaterialManager
 {
 private:
@@ -15,7 +22,11 @@ private:
 
     
 public:
-    ~MaterialManager();
+    ~MaterialManager() {
+		CleanAllMaterials();
+		if (device) device->Release();
+		if (context) context->Release();
+    }
     void Init(ID3D11Device* dev, ID3D11DeviceContext* devCon);
 
     HRESULT CreateMaterial(std::string MaterialName, LPCWSTR textureFileLocation, std::string shaderName, bool isSkybox);
@@ -25,10 +36,36 @@ public:
 
     void LoadMaterials()
     {
-        CreateMaterial("Skybox", L"SkyboxResources/skybox01.dds", "Skybox", true);
-        CreateMaterial("Default", L"Box.bmp", "Default", false);
-        //CreateMaterial("Reflective", L"Box.bmp", "Default", false);
-    }
+        CreateMaterial("ErrorNoMaterial",L"Textures/Error.png",                 "Emissive",    false);
+       
+        CreateMaterial("Skybox",        L"SkyboxResources/skybox02.dds",        "Skybox",      true);
+        CreateMaterial("DebugSkybox",   L"SkyboxResources/Debug.dds",           "Skybox",      true);
+        CreateMaterial("Space",         L"SkyboxResources/NightSky.dds",        "Skybox",      true);
+       
+        CreateMaterial("Standard",      L"Textures/StandardCheckered.jpg",      "Standard",    false);
+        CreateMaterial("Box",           L"Textures/Box.bmp",                    "Standard",    false);
+        CreateMaterial("Reflective",    L"Textures/Box.bmp",                    "Reflective",  false);
+        
+        
+        CreateMaterial("WaveMaterial",  L"Textures/box.bmp",                    "WaveShader",  false);
+        CreateMaterial("Explosion",     L"Textures/explode.bmp",                "Standard",    false);
+
+		CreateMaterial("SunMat",        L"Textures/Planets/Sunmap.jpg",         "Emissive", false);
+		CreateMaterial("MercuryMat",    L"Textures/Planets/mercurymap.jpg",     "Standard", false);
+		CreateMaterial("EarthMat",      L"Textures/Planets/earthmap.jpg",       "Standard", false);
+		CreateMaterial("MarsMat",       L"Textures/Planets/marsmap.jpg",        "Standard", false);
+		CreateMaterial("NeptuneMat",    L"Textures/Planets/neptunemap.jpg",     "Standard", false);
+		CreateMaterial("VenusMat",      L"Textures/Planets/Venusmap.jpg",       "Standard", false);
+		CreateMaterial("MoonMat",       L"Textures/Planets/Plutomap.jpg",       "Standard", false);
+		CreateMaterial("JupiterMat",    L"Textures/Planets/Jupitermap.jpg",     "Standard", false);
+        CreateMaterial("SaturnMat",     L"Textures/Planets/Saturnmap.jpg",      "Standard", false);
+		CreateMaterial("UranusMat",     L"Textures/Planets/Uranusmap.jpg",      "Standard", false);
+
+
+
+		CreateMaterial("Missile",       L"Textures/aim120.png",                 "Standard", false);
+	}
+
     
 
 

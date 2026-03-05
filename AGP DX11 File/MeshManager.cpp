@@ -16,9 +16,9 @@ HRESULT MeshManager::CreateMesh(std::string meshName, std::string materialName, 
 {
 	if (MeshLibrary.find(meshName) == MeshLibrary.end())
 	{
-		Mesh* newMesh = new Mesh();
-		newMesh->material = MaterialManager::GetInstance()->GetMaterial(materialName);
-		newMesh->fileModel = new ObjFileModel{ (char*)objFileName, device, context };
+		Mesh* newMesh = new Mesh(	new ObjFileModel{ (char*)objFileName, device, context }, 
+									MaterialManager::GetInstance()->GetMaterial(materialName));
+		
 
 		if (newMesh->fileModel->vertices == NULL)
 		{
@@ -49,7 +49,7 @@ Mesh* MeshManager::GetMesh(const std::string& meshName)
 	else
 	{
 		std::cout << "MeshManager::GetMesh No mesh of type *" + meshName + "* was found in MeshLibrary" << endl;
-		return MeshLibrary["Default"];
+		return MeshLibrary["ErrorNoMesh"];
 	}
 }
 

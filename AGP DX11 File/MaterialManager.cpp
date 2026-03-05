@@ -21,7 +21,9 @@ HRESULT MaterialManager::CreateMaterial(std::string materialName, LPCWSTR textur
 		Material* newMtl = new Material();
 		if (isSkybox)
 		{
-			CreateDDSTextureFromFile(RendererD3D::GetInstance()->GetDevice(), RendererD3D::GetInstance()->GetDeviceContext(), textureFileLocation, NULL, &newMtl->texture);
+			CreateDDSTextureFromFile(RendererD3D::GetInstance()->GetDevice(), 
+									RendererD3D::GetInstance()->GetDeviceContext(),
+									textureFileLocation, NULL, &newMtl->texture);
 		}
 		else
 		{
@@ -62,7 +64,7 @@ Material* MaterialManager::GetMaterial(const std::string& materialName)
 	else
 	{
 		std::cout << "MaterialManager::GetMaterial No material of type *" + materialName + "* was found in MaterialLibrary" << endl;
-		return MaterialLibrary["Default"];
+		return MaterialLibrary["ErrorNoMaterial"];
 	}
 }
 

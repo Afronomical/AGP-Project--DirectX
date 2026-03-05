@@ -22,6 +22,11 @@ public:
 	ObjFileModel* fileModel;
 	Material* material;
 	
-	
+	Mesh(ObjFileModel* model, Material* mat) : fileModel(model), material(mat) {}
+	~Mesh() 
+	{
+		fileModel = nullptr;
+		material = nullptr;
+	}
 };
 

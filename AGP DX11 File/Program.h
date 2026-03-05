@@ -15,12 +15,10 @@
 #include "objfilemodel.h"
 #include <iostream>
 #include <DDSTextureLoader.h>
+#include "Scene.h"
+#include "SceneDemo.h"
+#include "SpaceScene.h"
 using namespace DirectX;
-
-#define SCREEN_WIDTH	800
-#define SCREEN_HEIGHT	600
-
-#define MAX_POINT_LIGHTS 8
 
 class Program
 {
@@ -31,6 +29,14 @@ private:
 	Program() {};
 	Program(const Program&) = delete;
 	Program& operator=(const Program&) = delete;
+
+	~Program()
+	{
+		if (currentScene) delete currentScene;
+		if (instance) delete instance;
+	}
+
+
 public:
 	static Program* GetInstance() {
 		if (!instance) {
@@ -43,9 +49,12 @@ public:
 
 
 private:
-	
+
 	HINSTANCE hInst = NULL;
 	HWND	  hWnd = NULL;
+	bool isRunning = true;
+	Scene* currentScene = new SpaceScene();
+						//new SceneDemo();
 
 
 public:

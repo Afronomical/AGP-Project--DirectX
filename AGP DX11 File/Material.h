@@ -14,6 +14,11 @@ public:
 	Shader* shader;						//Container for Vertex and Pixel Shader
 	Material() {};
 	Material(LPCWSTR textureFileLocation, std::string shaderName);
+	~Material()
+	{
+		if (texture) texture->Release();
+		shader = nullptr;
+	}
 
 	ID3D11ShaderResourceView* GetTexture() { return texture; };
 	Shader* GetShader() { return shader; };

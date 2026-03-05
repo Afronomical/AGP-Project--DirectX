@@ -32,8 +32,8 @@ HRESULT Window::Initialize(HINSTANCE instanceHandle, WNDPROC wndProc, int nCmdSh
 		L"WindowClass1",
 		name,
 		WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
-		100,
-		100,
+		0,
+		0,
 		wr.right - wr.left,
 		wr.bottom - wr.top,
 		NULL,
@@ -114,10 +114,12 @@ HWND Window::GetWindowHandle()
 
 int Window::GetWidth()
 {
+	width = GetSystemMetrics(SM_CXSCREEN);
 	return width;
 }
 
 int Window::GetHeight()
 {
+	height = GetSystemMetrics(SM_CYSCREEN);
 	return height;
 }

@@ -9,7 +9,7 @@ public:
     ID3D11PixelShader* pixelShader = NULL;
     ID3D11InputLayout* inputLayout = NULL;
 
-    Shader() 
+	Shader() : vertexShader(NULL), pixelShader(NULL), inputLayout(NULL)
     {
 
     }
@@ -23,9 +23,9 @@ public:
 
     ~Shader()
     {
-        if (vertexShader)   vertexShader->Release();
-        if (pixelShader)    pixelShader->Release();
-        if (inputLayout)    inputLayout->Release();
+        if (vertexShader) { vertexShader->Release(); vertexShader = nullptr; }
+        if (pixelShader) { pixelShader->Release(); pixelShader = nullptr; }
+        if (inputLayout) { inputLayout->Release(); inputLayout = nullptr; }
     }
 
 };

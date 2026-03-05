@@ -60,7 +60,11 @@ Text2D::Text2D(string filename, ID3D11Device* device, ID3D11DeviceContext* conte
 
 	// Load in the font texture from given filename
 	hr = CreateWICTextureFromFile(pD3DDevice, NULL, /*=>>*/ wstring{filename.begin(), filename.end()}.c_str() /*<<=*/, NULL, &pTexture);
-	if(FAILED(hr)) exit(0);
+	if(FAILED(hr)) 
+	{
+		wstring failedFileName = L"Failed to load texture file: " + wstring{ filename.begin(), filename.end() };
+		MessageBox(NULL, failedFileName.c_str(), L"Critical Error!", MB_ICONERROR | MB_OK);
+	};
 
 	// Create sampler for texture
 	D3D11_SAMPLER_DESC sampler_desc;

@@ -21,38 +21,52 @@ class InputManager
 {
 private:
     DirectX::Keyboard::State kbState;
-	Keyboard::KeyboardStateTracker* kbTracker = nullptr;
+    std::unique_ptr<DirectX::Keyboard::KeyboardStateTracker> kbTracker;
     std::unique_ptr<DirectX::Keyboard> keyboard;
     
     DirectX::Mouse::State mbState;
-	Mouse::ButtonStateTracker* msTracker;
+    std::unique_ptr<DirectX::Mouse::ButtonStateTracker> msTracker;
     std::unique_ptr<DirectX::Mouse> mouse;
 
 public:
-	void Init();
+	HRESULT Init();
 	void HandleInput();
 
 private:
-    static InputManager* instance;
+
+
+
+
+    
     InputManager() {};
+	~InputManager() {
+		if (kbTracker) kbTracker.reset();
+		if (keyboard) keyboard.reset();
+		if (msTracker) msTracker.reset();
+		if (mouse) mouse.reset();
+	}
     InputManager(const InputManager&) = delete;
     InputManager& operator=(const InputManager&) = delete;
+
+
+
 public:
-    static InputManager* GetInstance() {
-        if (!instance) {
-            instance = new InputManager();
-        }
+
+
+
+    static InputManager& GetInstance() {
+        static InputManager instance;
         return instance;
     }
 
-    // E.G: GetKeyPressed.H
-    static DirectX::Keyboard::State GetKeyPressed() { return InputManager::GetInstance()->kbTracker->pressed;}
-    // E.G: GetKeyReleased.E
-    static DirectX::Keyboard::State GetKeyReleased() { return InputManager::GetInstance()->kbTracker->released;}
-    // E.G: GetKeyHeld.L
-    static DirectX::Keyboard::State GetKeyHeld() { return InputManager::GetInstance()->kbTracker->lastState;}
-    // E.G: GetMouse.X
-    static DirectX::Mouse::State GetMouseXY() { return InputManager::GetInstance()->mbState; }
+    // E.G: GetKeyPressed().H
+    static DirectX::Keyboard::State GetKeyPressed() { return InputManager::GetInstance().kbTracker->pressed;}
+    // E.G: GetKeyReleased().E
+    static DirectX::Keyboard::State GetKeyReleased() { return InputManager::GetInstance().kbTracker->released;}
+    // E.G: GetKeyHeld().L
+    static DirectX::Keyboard::State GetKeyHeld() { return InputManager::GetInstance().kbTracker->lastState;}
+    // E.G: GetMouse().X
+    static DirectX::Mouse::State GetMouseXY() { return InputManager::GetInstance().mbState; }
 
 
     // Parameters: 0=LeftMB, 1=RightMB, 2=MiddleMB

@@ -65,12 +65,6 @@ HRESULT ShaderManager::LoadPixelShader( LPCWSTR filename, LPCSTR entryPoint, ID3
 	return S_OK;
 }
 
-ShaderManager::~ShaderManager()
-{
-
-
-
-}
 
 void ShaderManager::Init(ID3D11Device* dev, ID3D11DeviceContext* devCon)
 {
@@ -118,13 +112,13 @@ Shader* ShaderManager::GetShader(const std::string& shaderName)
 {
 	if (ShaderLibrary.find(shaderName) != ShaderLibrary.end())
 	{
-		std::cout << "returned shader named" << " *shaderName*" << std::endl;
+		std::cout << "returned shader named: " << shaderName << std::endl;
 		return ShaderLibrary[shaderName];
 	}
 	else
 	{
 		std::cout << "ShaderManager::GetShader: No shader of type *" + shaderName + "* was found in ShadersLibrary" << endl;
-		return ShaderLibrary["Default"];
+		return ShaderLibrary["Emissive"];
 	}
 	
 
