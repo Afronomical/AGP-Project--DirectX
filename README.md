@@ -26,7 +26,8 @@ This project was my first time delving into DirectX 11 and 3D rendering as a who
  - Comment out the alternative
 
 Should look like this:
-   <img width="416" height="49" alt="image" src="https://github.com/user-attachments/assets/1af3b2ce-7b06-49b5-924a-c3982776727c" />
+  
+<img width="870" height="344" alt="carbon (2)" src="https://github.com/user-attachments/assets/abfbdc16-4880-44ec-ad05-c298aeaf9389" />
 
 
 
